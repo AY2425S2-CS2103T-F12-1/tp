@@ -320,13 +320,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. The system must be designed for a single user only, user data is private and not shared between different users.
+5. Users should be able to run the application from a single executable JAR file.
+6. The system must automatically save data after each user edit to ensure data persistence.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **JAR File**: A compressed package that bundles Java classes, resources metadata into a single executable file
 
 --------------------------------------------------------------------------------------------------------------------
 
