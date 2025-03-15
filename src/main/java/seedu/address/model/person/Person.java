@@ -85,6 +85,13 @@ public class Person {
     }
 
     /**
+     * Delete a sport from the person's list of sports.
+     */
+    public void deleteSport(Sport sport) {
+        sports.remove(sport);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
