@@ -2,8 +2,11 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -24,11 +27,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME_PATH = "/view/LightTheme.css";
+    private static final String DARK_THEME_PATH = "/view/DarkTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isDarkTheme = true;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -40,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private Button themeToggleButton;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -136,12 +145,55 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Toggles between light and dark themes.
+     */
+    @FXML
+    private void handleToggleTheme() {
+        Scene scene = primaryStage.getScene();
+        isDarkTheme = !isDarkTheme;
+
+        if (isDarkTheme) {
+            // Switch to dark theme
+            scene.getStylesheets().remove(MainWindow.class.getResource(LIGHT_THEME_PATH).toExternalForm());
+            scene.getStylesheets().add(0, MainWindow.class.getResource(DARK_THEME_PATH).toExternalForm());
+            themeToggleButton.setText("☀ Light Mode");
+            logger.info("Switched to dark theme");
+        } else {
+            // Switch to light theme
+            scene.getStylesheets().remove(MainWindow.class.getResource(DARK_THEME_PATH).toExternalForm());
+            scene.getStylesheets().add(0, MainWindow.class.getResource(LIGHT_THEME_PATH).toExternalForm());
+            themeToggleButton.setText("🌙 Dark Mode");
+            logger.info("Switched to light theme");
+        }
+
+        helpWindow.show();
+        // Apply the current theme to the help window
+        helpWindow.applyTheme(isDarkTheme);
+
+        // Ensure the window has the focus and is brought to the front
+        Platform.runLater(() -> {
+            helpWindow.getRoot().toFront();
+            helpWindow.getRoot().requestFocus();
+            logger.info("Help window displayed and focused");
+        });
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            // Apply the current theme to the help window
+            helpWindow.applyTheme(isDarkTheme);
+
+            // Ensure the window has the focus and is brought to the front
+            Platform.runLater(() -> {
+                helpWindow.getRoot().toFront();
+                helpWindow.getRoot().requestFocus();
+                logger.info("Help window displayed and focused");
+            });
         } else {
             helpWindow.focus();
         }

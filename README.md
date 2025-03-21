@@ -16,8 +16,8 @@
   * Follow [this guide](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) to select JDK 17
   * Set **Project language level** to `SDK default` in the same dialog.
 3. Run the Placeholder file:
-  * Locate the file named `PLACEHOLDER_FILE_FOR_NOW` 
-  * right-click it, and select `Run FitFriends.main()` 
+  * Locate the file named `PLACEHOLDER_FILE_FOR_NOW`
+  * right-click it, and select `Run FitFriends.main()`
 
 If the setup is successful, you'll see
 

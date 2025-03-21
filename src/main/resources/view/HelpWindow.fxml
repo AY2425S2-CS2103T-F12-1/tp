@@ -5,40 +5,189 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.Image?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+         minWidth="500" minHeight="500" maxWidth="800" maxHeight="800">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
+        <URL value="@Extensions.css" />
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+      <VBox spacing="10">
+        <!-- Original elements that the controller expects -->
+        <HBox fx:id="helpMessageContainer" alignment="CENTER" visible="false" managed="false">
+          <children>
+            <Label fx:id="helpMessage" text="Label">
+              <HBox.margin>
+                <Insets right="5.0" />
+              </HBox.margin>
+            </Label>
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+          </padding>
+        </HBox>
+
+        <!-- Our improved UI -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="help-scroll-pane">
+          <VBox spacing="15" styleClass="help-content-container">
+            <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <HBox alignment="CENTER">
+              <Label text="Address Book Command Reference" styleClass="help-title" />
+            </HBox>
+
+            <!-- General Commands -->
+            <VBox styleClass="help-section">
+              <Label text="General Commands" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="help" styleClass="help-command-name" />
+                <Label text="Shows this help window with all available commands" styleClass="help-command-desc" />
+                <Label text="Example: help" styleClass="help-command-example" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="exit" styleClass="help-command-name" />
+                <Label text="Exits the application" styleClass="help-command-desc" />
+                <Label text="Example: exit" styleClass="help-command-example" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="clear" styleClass="help-command-name" />
+                <Label text="Clears all entries from the address book" styleClass="help-command-desc" />
+                <Label text="Example: clear" styleClass="help-command-example" />
+                <Label text="Note: This command cannot be undone. Use with caution." styleClass="help-command-note" />
+              </VBox>
+            </VBox>
+
+            <!-- Add Commands -->
+            <VBox styleClass="help-section">
+              <Label text="Add Commands" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="add" styleClass="help-command-name" />
+                <Label text="Adds a new person to the address book" styleClass="help-command-desc" />
+                <Label text="Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..." wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25" wrapText="true" styleClass="help-command-example" />
+                  <Label text="add n/Betsy Crowe p/92345678 e/betsyc@example.com a/Newgate Prison t/friend t/criminal" wrapText="true" styleClass="help-command-example" />
+                  <Label text="add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney t/colleagues" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+              </VBox>
+            </VBox>
+
+            <!-- List & Find Commands -->
+            <VBox styleClass="help-section">
+              <Label text="List &amp; Find Commands" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="list" styleClass="help-command-name" />
+                <Label text="Shows a list of all persons in the address book" styleClass="help-command-desc" />
+                <Label text="Example: list" styleClass="help-command-example" />
+                <Label text="Note: This command resets any filters applied by the find command." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="find" styleClass="help-command-name" />
+                <Label text="Finds all persons whose names contain any of the specified keywords" styleClass="help-command-desc" />
+                <Label text="Format: find KEYWORD [MORE_KEYWORDS]" wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="find alex" styleClass="help-command-example" />
+                  <Label text="find alice bob charlie" styleClass="help-command-example" />
+                  <Label text="find Betsy Tim John" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: The search is case-insensitive and matches partial words." styleClass="help-command-note" />
+              </VBox>
+            </VBox>
+
+            <!-- Edit & Delete Commands -->
+            <VBox styleClass="help-section">
+              <Label text="Edit &amp; Delete Commands" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="edit" styleClass="help-command-name" />
+                <Label text="Edits the details of the person identified by the index number" styleClass="help-command-desc" />
+                <Label text="Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..." wrapText="true" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="edit 1 p/91234567 e/johndoe@example.com" wrapText="true" styleClass="help-command-example" />
+                  <Label text="edit 2 n/Betsy Crowe t/friend" wrapText="true" styleClass="help-command-example" />
+                  <Label text="edit 1 n/John Doe p/91234567 e/johndoe@example.com a/College Avenue 3, Block 2, #02-222 t/friend t/schoolmate" wrapText="true" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: To remove all tags, use edit INDEX t/" styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="delete" styleClass="help-command-name" />
+                <Label text="Deletes the person identified by the index number" styleClass="help-command-desc" />
+                <Label text="Format: delete INDEX" styleClass="help-command-format" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="delete 3" styleClass="help-command-example" />
+                  <Label text="delete 1" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: Index must be a positive integer shown in the displayed list." styleClass="help-command-note" />
+              </VBox>
+            </VBox>
+
+            <!-- Other Commands -->
+            <VBox styleClass="help-section">
+              <Label text="Other Commands" styleClass="help-section-title" />
+
+              <VBox styleClass="help-command">
+                <Label text="history" styleClass="help-command-name" />
+                <Label text="Lists all the commands that you have entered in reverse chronological order" styleClass="help-command-desc" />
+                <Label text="Example: history" styleClass="help-command-example" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="undo" styleClass="help-command-name" />
+                <Label text="Restores the address book to the state before the previous undoable command" styleClass="help-command-desc" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="undo" styleClass="help-command-example" />
+                  <Label text="Multiple undos: undo (followed by another) undo" styleClass="help-command-example" />
+                </VBox>
+                <Label text="Note: Undoable commands are commands that modify the address book's content (add, delete, edit, clear)." styleClass="help-command-note" />
+              </VBox>
+
+              <VBox styleClass="help-command">
+                <Label text="redo" styleClass="help-command-name" />
+                <Label text="Reverses the most recent undo command" styleClass="help-command-desc" />
+                <VBox styleClass="examples-container">
+                  <Label text="Examples:" styleClass="examples-header" />
+                  <Label text="redo" styleClass="help-command-example" />
+                  <Label text="Multiple redos: redo (followed by another) redo" styleClass="help-command-example" />
+                </VBox>
+              </VBox>
+            </VBox>
+
+            <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="help-footer">
+              <Button mnemonicParsing="false" onAction="#copyUrl" text="Close" styleClass="help-close-button" />
+            </HBox>
+          </VBox>
+        </ScrollPane>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>
