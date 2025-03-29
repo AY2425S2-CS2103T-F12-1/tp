@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindSportCommandParser" as FindSportCommandParser LOGIC_COLOR
+participant "<<class>> ParserUtil" as ParserUtil LOGIC_COLOR
+participant "p:SportContainsKeywordsPredicate" as SportContainsKeywordsPredicate LOGIC_COLOR
+participant "d:FindSportCommand" as FindSportCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findsport s/Badminton s/Soccer")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findsport s/Badminton s/Soccer")
+activate AddressBookParser
+
+create FindSportCommandParser
+AddressBookParser -> FindSportCommandParser
+activate FindSportCommandParser
+
+FindSportCommandParser --> AddressBookParser
+deactivate FindSportCommandParser
+
+AddressBookParser -> FindSportCommandParser : parse("s/Badminton s/Soccer")
+activate FindSportCommandParser
+
+FindSportCommandParser --> ParserUtil : parseSports("Badminton, Soccer")
+activate ParserUtil
+ParserUtil --> FindSportCommandParser : sports
+deactivate ParserUtil
+
+create SportContainsKeywordsPredicate
+FindSportCommandParser -> SportContainsKeywordsPredicate : SportContainsKeywordsPredicate(sportKeywordList)
+activate SportContainsKeywordsPredicate
+
+SportContainsKeywordsPredicate --> FindSportCommandParser
+deactivate SportContainsKeywordsPredicate
+
+create FindSportCommand
+FindSportCommandParser -> FindSportCommand : FindSportCommand(p, sportKeywordList)
+activate FindSportCommand
+
+FindSportCommand --> FindSportCommandParser
+deactivate FindSportCommand
+
+FindSportCommandParser --> AddressBookParser : d
+deactivate FindSportCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindSportCommandParser -[hidden]-> AddressBookParser
+destroy FindSportCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> FindSportCommand : execute(m)
+activate FindSportCommand
+
+FindSportCommand -> Model : updateFilteredPersonList(p);
+activate Model
+
+Model --> FindSportCommand
+deactivate Model
+
+create CommandResult
+FindSportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindSportCommand
+deactivate CommandResult
+
+FindSportCommand --> LogicManager : r
+deactivate FindSportCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
