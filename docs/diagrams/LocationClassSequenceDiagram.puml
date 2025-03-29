@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+' Box to indicate the Model layer (similar to your example)
+box Model MODEL_COLOR_T1
+participant "Caller" as Caller MODEL_COLOR
+participant "loc1:Location" as loc1 MODEL_COLOR
+participant "loc2:Location" as loc2 MODEL_COLOR
+end box
+
+' Caller creates the first Location
+Caller -> loc1 : new Location("S123456", address1, 1.234, 103.456)
+activate loc1
+loc1 --> Caller
+deactivate loc1
+
+' Caller creates the second Location
+Caller -> loc2 : new Location("S654321", address2, 1.567, 103.789)
+activate loc2
+loc2 --> Caller
+deactivate loc2
+
+' Caller invokes distanceTo on the first Location, passing the second
+Caller -> loc1 : distanceTo(loc2)
+activate loc1
+loc1 -> loc1 : Calculate using Haversine formula
+loc1 --> Caller : distance in km
+deactivate loc1
+
+@enduml
