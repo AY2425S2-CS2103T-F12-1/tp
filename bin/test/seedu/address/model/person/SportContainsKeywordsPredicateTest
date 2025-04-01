@@ -1,0 +1,96 @@
+package seedu.address.model.person;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
+
+public class SportContainsKeywordsPredicateTest {
+
+    @Test
+    public void equals() {
+        List<String> firstPredicateKeywordList = Collections.singletonList("soccer");
+        List<String> secondPredicateKeywordList = Arrays.asList("soccer", "basketball");
+
+        SportContainsKeywordsPredicate firstPredicate = new SportContainsKeywordsPredicate(firstPredicateKeywordList);
+        SportContainsKeywordsPredicate secondPredicate = new SportContainsKeywordsPredicate(secondPredicateKeywordList);
+
+        // same object -> returns true
+        assertTrue(firstPredicate.equals(firstPredicate));
+
+        // same values -> returns true
+        SportContainsKeywordsPredicate firstPredicateCopy = new SportContainsKeywordsPredicate(firstPredicateKeywordList);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // different types -> returns false
+        assertFalse(firstPredicate.equals(1));
+
+        // null -> returns false
+        assertFalse(firstPredicate.equals(null));
+
+        // different predicate -> returns false
+        assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void test_sportContainsKeywords_returnsTrue() {
+        // One keyword
+        SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(Collections.singletonList("soccer"));
+        assertTrue(predicate.test(new PersonBuilder().withSports("soccer").build()));
+
+        // Multiple keywords, one match
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer", "basketball"));
+        assertTrue(predicate.test(new PersonBuilder().withSports("soccer").build()));
+
+        // Multiple keywords, multiple matches
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer", "basketball"));
+        assertTrue(predicate.test(new PersonBuilder().withSports("soccer", "basketball").build()));
+
+        // Only one keyword matches
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer", "rugby"));
+        assertTrue(predicate.test(new PersonBuilder().withSports("soccer", "tennis").build()));
+
+        // Mixed case keywords
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("SoCcEr", "BaSkEtBaLl"));
+        assertTrue(predicate.test(new PersonBuilder().withSports("soccer", "basketball").build()));
+    }
+
+    @Test
+    public void test_sportDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PersonBuilder().withSports("soccer").build()));
+
+        // Non-matching keyword
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("basketball"));
+        assertFalse(predicate.test(new PersonBuilder().withSports("soccer", "tennis").build()));
+
+        // Keywords match name, but not sports
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("Alice"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withSports("soccer").build()));
+
+        // Partial match of sport name
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("socc"));
+        assertFalse(predicate.test(new PersonBuilder().withSports("soccer").build()));
+
+        // Person with no sports
+        predicate = new SportContainsKeywordsPredicate(Arrays.asList("soccer"));
+        assertFalse(predicate.test(new PersonBuilder().build()));
+    }
+
+    @Test
+    public void toStringMethod() {
+        List<String> keywords = Arrays.asList("soccer", "basketball");
+        SportContainsKeywordsPredicate predicate = new SportContainsKeywordsPredicate(keywords);
+
+        String expected = new ToStringBuilder(predicate).add("keywords", keywords).toString();
+
+        assertTrue(predicate.toString().equals(expected));
+    }
+}

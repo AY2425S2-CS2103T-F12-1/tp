@@ -1,0 +1,45 @@
+.error {
+    -fx-text-fill: #f7768e !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #1e2030;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: #7aa2f7;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.tooltip-text {
+    -fx-text-fill: #c0caf5;
+}
+
+/* Additional styles for command input */
+.command-input-focus {
+    -fx-border-color: #7aa2f7 !important;
+    -fx-border-width: 2 !important;
+}
+
+/* Hover effect for list items */
+.list-cell:hover {
+    -fx-background-color: #3b4261;
+}
+
+/* Animation for focus transitions */
+.animated-focus-transition {
+    -fx-transition: border-color 0.2s ease-in-out;
+}
+
+/* Success message style */
+.success-message {
+    -fx-text-fill: #9ece6a !important;
+}
+
+/* Warning message style */
+.warning-message {
+    -fx-text-fill: #e0af68 !important;
+}

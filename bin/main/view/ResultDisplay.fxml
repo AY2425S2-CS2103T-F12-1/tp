@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1">
+  <padding>
+    <Insets top="5" right="5" bottom="5" left="5" />
+  </padding>
+  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true"/>
+</StackPane>

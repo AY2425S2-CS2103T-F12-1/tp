@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<HBox id="cardPane" fx:id="cardPane" styleClass="person-card" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="12" right="15" bottom="12" left="15" />
+      </padding>
+      <!-- Header section with name and ID -->
+      <HBox spacing="5" alignment="CENTER_LEFT" styleClass="card-header">
+        <Label fx:id="id" styleClass="person-id">
+          <minWidth>
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="person-name" />
+      </HBox>
+
+      <!-- Tags and sports section -->
+      <HBox spacing="10" styleClass="tags-container">
+        <VBox spacing="4">
+          <padding><Insets top="8" bottom="8" /></padding>
+          <FlowPane fx:id="tags" styleClass="tags-flowpane" />
+          <FlowPane fx:id="sports" styleClass="sports-flowpane" />
+        </VBox>
+      </HBox>
+
+      <!-- Contact information section -->
+      <VBox spacing="6" styleClass="contact-info">
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="phone" styleClass="contact-label" text="\$phone" />
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="email" styleClass="contact-label" text="\$email" />
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="address" styleClass="contact-label" text="\$address" />
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT" styleClass="info-row">
+          <Circle radius="3" styleClass="info-bullet" />
+          <Label fx:id="postalCode" styleClass="contact-label" text="\$postalCode" />
+        </HBox>
+      </VBox>
+    </VBox>
+  </GridPane>
+</HBox>

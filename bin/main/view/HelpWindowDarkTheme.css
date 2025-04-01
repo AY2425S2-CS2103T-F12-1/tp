@@ -1,0 +1,87 @@
+.help-title {
+    -fx-text-fill: #7aa2f7;
+}
+
+.help-section {
+    -fx-background-color: #292e42;
+}
+
+.help-section-title {
+    -fx-text-fill: #c0caf5;
+    -fx-border-color: #3b4261;
+}
+
+.help-command {
+    -fx-background-color: #24283b;
+}
+
+.help-command-name {
+    -fx-text-fill: #f7768e;
+}
+
+.help-command-desc {
+    -fx-text-fill: #a9b1d6;
+}
+
+.help-command-format {
+    -fx-text-fill: #9ece6a;
+    -fx-background-color: #1a1b26;
+    -fx-border-color: #3b4261;
+}
+
+.examples-header {
+    -fx-text-fill: #c0caf5;
+}
+
+.help-command-example {
+    -fx-text-fill: #7aa2f7;
+    -fx-background-color: rgba(122, 162, 247, 0.1);
+}
+
+.help-command-note {
+    -fx-text-fill: #bb9af7;
+}
+
+.help-command:hover {
+    -fx-background-color: #2a2e3f;
+}
+
+.help-close-button {
+    -fx-border-color: #7aa2f7;
+    -fx-background-color: #24283b;
+    -fx-text-fill: #c0caf5;
+}
+
+.help-close-button:hover {
+    -fx-background-color: #7aa2f7;
+    -fx-text-fill: #1e2030;
+}
+
+.help-close-button:pressed {
+    -fx-background-color: #5e77c2;
+    -fx-text-fill: #1e2030;
+}
+
+.help-scroll-pane .viewport {
+    -fx-background-color: #1e2030;
+}
+
+.help-scroll-pane .scroll-bar:vertical {
+    -fx-background-color: #16161e;
+}
+
+.help-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #3b4261;
+}
+
+.help-scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #565f89;
+}
+
+.help-content-container {
+    -fx-background-color: #1e2030;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #1e2030;
+}

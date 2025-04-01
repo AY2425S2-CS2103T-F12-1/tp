@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox alignment="CENTER_LEFT" spacing="5">
+    <Label fx:id="commandPrefixLabel" text=">" styleClass="command-prefix-label"/>
+    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Type command here..." HBox.hgrow="ALWAYS" styleClass="animated-focus-transition"/>
+  </HBox>
+  <padding>
+    <Insets top="5" right="5" bottom="5" left="5" />
+  </padding>
+</StackPane>
+

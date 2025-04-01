@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<HBox id="cardPane" fx:id="cardPane" styleClass="person-card" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+            <padding>
+                <Insets top="12" right="15" bottom="12" left="15" />
+            </padding>
+            <!-- Header section with name and ID -->
+            <HBox spacing="5" alignment="CENTER_LEFT" styleClass="card-header">
+                <Label fx:id="id" styleClass="person-id">
+                    <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="groupName" text="\$first" styleClass="group-name" />
+            </HBox>
+
+            <!-- Members section -->
+            <HBox spacing="10" styleClass="tags-container">
+                <VBox spacing="4">
+                    <padding><Insets top="8" bottom="8" /></padding>
+                    <FlowPane fx:id="members" styleClass="members-flowpane" />
+                </VBox>
+            </HBox>
+
+        </VBox>
+    </GridPane>
+</HBox>
