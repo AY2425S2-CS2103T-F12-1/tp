@@ -104,6 +104,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStringEquivalentPerson(String person) {
+        requireNonNull(person);
+        return addressBook.hasStringEquivalentPerson(person);
+    }
+
+    @Override
     public Person getPerson(String person) {
         requireNonNull(person);
         return addressBook.getPerson(person);

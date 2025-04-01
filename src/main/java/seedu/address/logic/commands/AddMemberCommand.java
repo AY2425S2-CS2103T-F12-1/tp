@@ -25,6 +25,11 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSONS_FOUND = "More than 1 person with the name %1$s exists, please "
             + "specify details by providing full name of person";
 
+    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "No person with the name %1$s exists, please "
+            + "choose from the list in the address book by providing the full name with appropriate case sensitivity.\n"
+            + "If the name is \"Alice Pauline\", please input \"Alice Pauline\", not \"alice pauline\", "
+            + "\"alice\" or any other variation";
+
     private final Index targetIndex;
     private final String member;
 
@@ -35,7 +40,7 @@ public class AddMemberCommand extends Command {
      * @param member The member to be added.
      */
     public AddMemberCommand(Index targetIndex, String member) {
-        requireNonNull(member);
+        requireNonNull(targetIndex, member);
         this.targetIndex = targetIndex;
         this.member = member;
     }
@@ -52,6 +57,12 @@ public class AddMemberCommand extends Command {
 
         Group groupToEdit = lastShownList.get(targetIndex.getZeroBased());
 
+        // Check if the person exists in the address book
+        if (!model.hasStringEquivalentPerson(member)) {
+            throw new CommandException(String.format(MESSAGE_PERSON_DOES_NOT_EXIST, member));
+        }
+        // Checks if the person is unique in the address book as there maybe multiple people with same name
+        // but different attributes
         if (!model.isPersonUnique(member)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSONS_FOUND, member));
         }

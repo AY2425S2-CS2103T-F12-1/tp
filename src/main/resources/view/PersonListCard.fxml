@@ -30,11 +30,11 @@
       </HBox>
 
       <!-- Tags and sports section -->
-      <HBox spacing="10" styleClass="tags-container">
-        <VBox spacing="4">
+      <HBox spacing="10" styleClass="tags-container" HBox.hgrow="ALWAYS">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
           <padding><Insets top="8" bottom="8" /></padding>
-          <FlowPane fx:id="tags" styleClass="tags-flowpane" />
-          <FlowPane fx:id="sports" styleClass="sports-flowpane" />
+          <FlowPane fx:id="tags" styleClass="tags-flowpane" VBox.vgrow="ALWAYS" />
+          <FlowPane fx:id="sports" styleClass="sports-flowpane" VBox.vgrow="ALWAYS" />
         </VBox>
       </HBox>
 

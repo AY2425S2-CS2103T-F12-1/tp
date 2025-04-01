@@ -17,7 +17,7 @@ public class AddGroupCommand extends Command {
             + "Example: " + COMMAND_WORD + " g/TeamAlpha";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
-    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the address book.";
 
     private final Group group;
 

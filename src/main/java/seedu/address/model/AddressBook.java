@@ -81,6 +81,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a string representing person exists in the address book.
+     */
+    public boolean hasStringEquivalentPerson(String person) {
+        requireNonNull(person);
+        return persons.containsStringEquivalentPerson(person);
+    }
+
+    /**
      * Returns person if person with the same identity as {@code person} exists in the address book.
      */
     public Person getPerson(String person) {

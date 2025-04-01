@@ -60,6 +60,10 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a string equivalent person exists in address book.
+     */
+    boolean hasStringEquivalentPerson(String person);
+    /**
      * Returns person if person with the same identity as {@code person} exists in the address book.
      */
     Person getPerson(String person);

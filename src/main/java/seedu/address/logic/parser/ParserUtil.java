@@ -170,7 +170,7 @@ public class ParserUtil {
      */
     public static Sport parseSport(String sport) throws ParseException {
         requireNonNull(sport);
-        String trimmedSport = sport.trim();
+        String trimmedSport = sport.trim().toLowerCase();
 
         // Define a set of allowed sports (all in lowercase)
         Set<String> validSports = new HashSet<>(Arrays.asList(

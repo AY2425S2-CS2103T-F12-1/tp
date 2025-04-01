@@ -24,10 +24,10 @@
             </HBox>
 
             <!-- Members section -->
-            <HBox spacing="10" styleClass="tags-container">
-                <VBox spacing="4">
+            <HBox spacing="10" styleClass="tags-container" HBox.hgrow="ALWAYS" >
+                <VBox spacing="4" HBox.hgrow="ALWAYS" >
                     <padding><Insets top="8" bottom="8" /></padding>
-                    <FlowPane fx:id="members" styleClass="members-flowpane" />
+                    <FlowPane fx:id="members" styleClass="members-flowpane" VBox.vgrow="ALWAYS" />
                 </VBox>
             </HBox>
 
