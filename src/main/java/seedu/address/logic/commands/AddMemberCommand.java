@@ -51,16 +51,12 @@ public class AddMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-
         List<Game> lastShownList = model.getFilteredGameList();
-
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(MESSAGE_INVALID_GAME_INDEX, targetIndex.getOneBased()));
         }
-
-
 
         Game gameToEdit = lastShownList.get(targetIndex.getZeroBased());
 
@@ -78,7 +74,8 @@ public class AddMemberCommand extends Command {
         gameToEdit.addParticipant(personToAdd);
         model.addGame(gameToEdit);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToAdd.getName().fullName, gameToEdit));
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS, personToAdd.getName().fullName, gameToEdit.getSport().sportName));
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided \n"
             + "is invalid. Please check that the index exists in the current person list.";
-    public static final String MESSAGE_INVALID_GAME_DISPLAYED_INDEX = "The game index provided \n"
+    public static final String MESSAGE_INVALID_GAME_DISPLAYED_INDEX = "The game index provided "
             + "is invalid. Please check that the index exists in the current game list.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "Found %1$d contact(s) matching your search criteria!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
