@@ -106,7 +106,6 @@ FitFriends is designed to help **sporty young adults*** connect, organize and pa
    ```
 
 4. **You should see** the FitFriends welcome screen. Congratulations! You're ready to start.
-
 #### Using the Graphical Interface
 
 1. **Double-click** on the FitFriends.jar file.
@@ -306,7 +305,6 @@ This adds archery to the global list of valid sports that can be assigned to con
 > 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
 
 #### Listing All Sports
-
 View all available sports in the global sports list with their indices.
 
 **Format**:
