@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Sport;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,9 +66,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setPostalCode(
                     ParserUtil.parsePostalCode(argMultimap.getValue(PREFIX_POSTAL_CODE).get()));
         }
+        if (argMultimap.getValue(PREFIX_SPORT).isPresent()) {
+            throw new ParseException(EditCommand.MESSAGE_FAILURE_SPORT);
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
-        editPersonDescriptor.setSports(parseSportsForEdit(argMultimap.getAllValues(PREFIX_SPORT)));
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -92,17 +91,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
-    /**
-     * Parses {@code Collection<String> sports} into a {@code List<Sport>} if {@code sports} is non-empty.
-     */
-    private List<Sport> parseSportsForEdit(Collection<String> sports) throws ParseException {
-        assert sports != null;
-        if (sports.isEmpty()) {
-            return null;
-        }
-        return ParserUtil.parseSports(sports);
-
-    }
-
 }

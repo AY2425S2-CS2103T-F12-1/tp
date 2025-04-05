@@ -12,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sport;
+import seedu.address.model.person.SportList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,6 +101,15 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withSports(String... sports) {
         List<Sport> sportList = Stream.of(sports).map(Sport::new).collect(Collectors.toList());
         descriptor.setSports(sportList);
+        return this;
+    }
+
+    /**
+     * Removes {@code List<Sports>} from the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder removeSports() {
+        descriptor.setSports((SportList) null);
         return this;
     }
 

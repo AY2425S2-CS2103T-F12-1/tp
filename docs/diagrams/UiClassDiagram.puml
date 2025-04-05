@@ -13,6 +13,9 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class GameListPanel
+Class GameCard
+Class SportsListPanel
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,10 +36,13 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" GameListPanel
+MainWindow *-down-> "1" SportsListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+GameListPanel -down-> "*" GameCard
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +50,14 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
+GameListPanel --|> UiPart
+GameCard --|> UiPart
+SportsListPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+GameCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

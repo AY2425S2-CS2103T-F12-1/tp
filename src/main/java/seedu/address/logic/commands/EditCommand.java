@@ -58,6 +58,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book. \n"
             + "The edit would create a duplicate contact.";
 
+    public static final String MESSAGE_FAILURE_SPORT = "Sports are not allowed to be edited.";
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 

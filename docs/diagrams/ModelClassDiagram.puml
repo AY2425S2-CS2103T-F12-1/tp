@@ -20,9 +20,13 @@ Package Model as ModelPackage <<Rectangle>>{
   Class Name
   Class Phone
   Class Tag
+  Class Sport
+  Class PostalCode
 
-  Class UniqueGroupList
-  Class Group
+  Class UniqueGameList
+  Class Game
+  Class DateTime
+  Class Location
 
   Class I #FFFFFF
 }
@@ -46,7 +50,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> PostalCode
 Person *--> "*" Tag
+Person *--> "*" Sport
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -56,10 +62,12 @@ Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 
-AddressBook *--> "1" UniqueGroupList
+AddressBook *--> "1" UniqueGameList
 
-UniqueGroupList --> "~* all" Group
+UniqueGameList --> "~* all" Game
 
-Group --> "~* all" Person
+Game --> "~* all" Person
+Game --> "1" DateTime
+Game --> "1" Location
 
 @enduml

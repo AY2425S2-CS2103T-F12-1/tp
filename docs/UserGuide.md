@@ -92,7 +92,6 @@ FitFriends is designed to help **sporty young adults** connect, organize and par
    ```
 
 4. **You should see** the FitFriends welcome screen. Congratulations! You're ready to start.
-
 #### Using the Graphical Interface
 
 1. **Double-click** on the FitFriends.jar file.
@@ -208,7 +207,6 @@ This updates the 2nd person in your current list with a new name, phone number, 
 ![Editing a Friend](images/edit_command.png)
 
 > ⚠️ **Note**: You cannot edit sports with this command. To change sports information, use the `deletesport` and `addsport` commands.
-
 > 💡 **Editing Tip**: Editing a tag will remove all existing tags as tags cannot be added sequentially (e.g., `edit t/bestfriend` followed by `edit t/colleague` will result in only the `colleague` tag remaining).
 
 #### Locating Friends by Name
@@ -293,7 +291,6 @@ This adds archery to the global list of valid sports that can be assigned to con
 > 💡 **Tip**: Sport names entered in commands are case-insensitive but will be stored and displayed in lowercase.
 
 #### Listing All Sports
-
 View all available sports in the global sports list with their indices.
 
 **Format**:

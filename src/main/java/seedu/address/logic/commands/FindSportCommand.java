@@ -50,7 +50,7 @@ public class FindSportCommand extends Command {
     public static String getInvalidSportMessage() {
         // Use the sorted list of sports to display them in alphabetical order
         List<String> sortedSports = Sport.getSortedValidSports();
-        StringBuilder message = new StringBuilder("Invalid sport found. Allowed sports:\n");
+        StringBuilder message = new StringBuilder("Invalid sport found. Allowed sports: \n");
 
         for (int i = 0; i < sortedSports.size(); i++) {
             message.append(String.format("%d. %s\n", i + 1, sortedSports.get(i)));

@@ -11,6 +11,7 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Some features such as addGame, deleteGame were reused from AddressBook-Level3.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -70,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](diagrams/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -117,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="diagrams/ModelClassDiagram.png" />
 
 
 The `Model` component,
@@ -164,7 +165,7 @@ The `Game` object is added into a `UniqueGameList` object whenever `addgame` com
 ### `deletegame` feature
 Similar to `addgame` feature
 
-### \[Implemented\] Global Sports List Management
+### Global Sports List Management
 
 #### Overview
 
@@ -230,9 +231,6 @@ Here's an overview of how the feature works:
 * **Popularity tracking**: Track which sports are most commonly used across contacts.
 * **Sport details**: Add additional information like required equipment or typical venue types.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,29 +265,381 @@ so as to reduce the hassle when organizing sports meetups.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                                                                            | So that I can…​                                                               |
-|----------|---------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | new user                                    | see usage instructions                                                                                  | refer to instructions when I forget how to use the App                        |
-| `* * *`  | user                                        | add a new person                                                                                        | so that I can store their information                                         |
-| `* * *`  | user                                        | delete a person                                                                                         | remove entries that I no longer need                                          |
-| `* * *`  | user                                        | find a person by name                                                                                   | locate details of persons without having to go through the entire list        |
-| `* * *`  | sporty person                               | add a person's preferred sport                                                                          | know who to arrange games with when I want to play a certain sport            |
-| `* * *`  | sporty person                               | add a friend's contact number                                                                           | contact them to meet up for games in future                                   |
-| `* * *`  | user looking to pick up a new sport         | find friends by sport played                                                                            | invite them to play or teach me the sport                                     |
-| `* * *`  | network enthusiast                          | see where my contacts live                                                                              | meet up with them more easily                                                 |
-| `* * *`  | impromptu person                            | see where my friends live                                                                               | see which friends are in the area when I am out and suddenly want to catch up |
-| `* * *`  | caring friend                               | see what sports my friends play                                                                         | arrange a session when I have something to talk about/check on them           |
-| `* *`    | sporty person                               | find sports facilities near me                                                                          | play sports there                                                             |
-| `* *`    | user                                        | hide private contact details                                                                            | protect the contact details of persons in my address book                     |
-| `* *`    | student                                     | receive suggested sports venues based on my group's location                                            | arrange a meetup location which is fair and convenient                        |
-| `* *`    | user who prefers structured planning        | book facilities directly through the app                                                                | reduce the hassle of navigating multiple booking applications                 |
-| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                                       | save time                                                                     |
-| `* *`    | user who dislikes long commutes             | set a maximum travel distance to be used to filter out addresses that are too far away from my location | receive suggestions from the application which fall within my preferred range |
-| `* *`    | user                                        | be able to edit an existing contact                                                                     | update their contact details                                                  |
-| `* *`    | working professional                        | add my favourite sports venues                                                                          | quickly suggest them for meetups                                              |
-| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                                           | enjoy sports without paying for private courts                                |
-| `* *`    | tennis player                               | be reminded to bring my racket                                                                          | save the trouble of having to borrow a racket at the last minute              |
-| `* *`    | sporty person                               | set my friend's preferred play locations                                                                | know where to meet them for games                                             |
-| `* *`    | working adult                               | tag contacts with custom labels                                                                         | categorize them by friends/work                                               |
-| `* *`    | sports coach                                | track where my students live                                                                            | organize training sessions at convenient locations                            |
-| `* *`
+| Priority | As a …​                                     | I want to …​                                                                                              | So that I can…​                                                                  |
+|----------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                                                                                    | refer to instructions when I forget how to use the App                           |
+| `* * *`  | user                                        | add a new person                                                                                          | so that I can store their information                                            |
+| `* * *`  | user                                        | delete a person                                                                                           | remove entries that I no longer need                                             |
+| `* * *`  | user                                        | find a person by name                                                                                     | locate details of persons without having to go through the entire list           |
+| `* * *`  | sporty person                               | add a person's preferred sport                                                                            | know who to arrange games with when I want to play a certain sport               |
+| `* * *`  | sporty person                               | add a friend's contact number                                                                             | contact them to meet up for games in future                                      |
+| `* * *`  | user looking to pick up a new sport         | find friends by sport played                                                                              | invite them to play or teach me the sport                                        |
+| `* * *`  | network enthusiast                          | see where my contacts live                                                                                | meet up with them more easily                                                    |
+| `* * *`  | impromptu person                            | see where my friends live                                                                                 | see which friends are in the area when I am out and suddenly want to catch up    |
+| `* * *`  | caring friend                               | see what sports my friends play                                                                           | arrange a session when I have something to talk about/check on them              |
+| `* *`    | sporty person                               | find sports facilities near me                                                                            | play sports there                                                                |
+| `* *`    | user                                        | hide private contact details                                                                              | protect the contact details of persons in my address book                        |
+| `* *`    | student                                     | receive suggested sports venues based on my group's location                                              | arrange a meetup location which is fair and convenient                           |
+| `* *`    | user who prefers structured planning        | book facilities directly through the app                                                                  | reduce the hassle of navigating multiple booking applications                    |
+| `* *`    | busy professional                           | quickly check for the nearest sports facility before heading down                                         | save time                                                                        |
+| `* *`    | user who dislikes long commutes             | set a maximum travel distance to be used to filter out addresses that are too far away from my location   | receive suggestions from the application which fall within my preferred range    |
+| `* *`    | user                                        | be able to edit an existing contact                                                                       | update their contact details                                                     |
+| `* *`    | working professional                        | add my favourite sports venues                                                                            | quickly suggest them for meetups                                                 |
+| `* *`    | thrifty user                                | be able to filter results only to show free to use facilities                                             | enjoy sports without paying for private courts                                   |
+| `* *`    | tennis player                               | be reminded to bring my racket                                                                            | save the trouble of having to borrow a racket at the last minute                 |
+| `* *`    | sporty person                               | set my friend's preferred play locations                                                                  | know where to meet them for games                                                |
+| `* *`    | working adult                               | tag contacts with custom labels                                                                           | categorize them by friends/work                                                  |
+| `* *`    | sports coach                                | track where my students live                                                                              | organize training sessions at convenient locations                               |
+
+### Use cases
+
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case 1: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
+    Use case ends.
+    **Extensions**
+* 2a. The list is empty.
+  Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 2: Tag a contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to tag a specific person in the list
+4.  AddressBook updates the person's contact details
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The person is not in the list.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 3: Filter by location**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User enters a location to filter the list
+4.  AddressBook updates the list shown to user
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given location is invalid.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+* 4a. The given location does not belong to any user.
+
+  * 4a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case 4: Edit a contact**
+
+**MSS**
+
+1.  User searches for a person
+2.  AddressBook shows matching result(s)
+3.  User requests to view contact details
+4.  AddressBook shows contact details
+5.  User selects field to update details
+6.  AddressBook reflects updated contact details
+
+    Use case ends.
+
+    **Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+### Non-Functional Requirements
+
+1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system must be designed for a single user only, user data is private and not shared between different users.
+5. Users should be able to run the application from a single executable JAR file.
+6. The system must automatically save data after each user edit to ensure data persistence.
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **JAR File**: A compressed package that bundles Java classes, resources metadata into a single executable file
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+**Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+### Launch and shutdown
+
+1. Initial launch
+
+2. Download the jar file and copy into an empty folder.
+
+3. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+4. Saving window preferences.
+
+5. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+6. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained. However, if the window was closed in light mode, it will start in dark mode as we chose to reduce the glare when the application is booted up.
+
+### Adding a person
+
+#### Adding a person to contact list
+
+1. Prerequisites: None.
+
+2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/402001`<br>
+   Expected: John Doe contact is added to the list. Details of the contact shown in the status message. PersonCard is found in the list on the left.
+
+3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John Street, #01-01 t/bestfriend s/tennis pc/123456`<br>
+   Expected: No person is added due to invalid postal code. Error details shown in the status message.
+
+4. Other incorrect add commands to try: <br>
+   `add n/John Doe p/ e/johnd@example.com a/John Street, #01-01 s/tennis pc/402001`, <br>
+   `add n/John Doe p/98765432 e/johnd@example.com a/, #01-01 s/tennis pc/402001`, `...` <br>
+   Expected: Similar to previous.
+
+### Editing a person
+
+#### Editing a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+
+2. Test case: `edit 1 n/Alicia Tay`<br>
+   Expected: First contact has name edited to \"Alicia Tay\". Details of the outcome of the edit shown in the status message.
+
+3. Test case: `edit 1 n/`<br>
+   Expected: No name is edited due to erroneous name field. Details of the error shown in the status message.
+
+4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Deleting a person
+
+#### Deleting a person while all persons are being shown
+
+1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+2. Test case: `delete 1`<br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+3. Test case: `delete 0`<br>
+   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Creating a sport in the global list
+
+#### Creating a sport
+
+1. Prerequisites: None.
+
+2. Test case: `createsport s/archery`<br>
+   Expected: Archery will be created in the global list. Details of the outcome of the createsport shown in the status message.
+
+3. Other incorrect createsport commands to try: `createsport`, `...` <br>
+   Expected: Similar to previous.
+
+### Listing global sports
+
+#### Lists all global sports.
+
+1. Prerequisites: None
+
+2. Test case: `listsports`<br>
+   Expected: Lists all registered sports in the status message.
+
+3. Other incorrect listsports commands to try: `listsports 1`, `deletesport abc`, `...`<br>
+   Expected: Similar to previous.
+
+### Deleting a sport from global list
+
+#### Deleting a sport from list of registered sports
+
+1. Prerequisites: At least 1 sport in the global list.
+
+2. Test case: `deletesport 1`<br>
+   Expected: The first sport in the list, if it exists, is deleted. Details of the outcome of the deletesport shown in the status message.
+
+3. Test case: `deletesport 0`<br>
+   Expected: No sport is deleted due to invalid index. Details of the outcome of the deletesport shown in the status message.
+
+4. Other incorrect deletesport commands to try: `deletesport`, `deletesport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Adding a sport to a person
+
+#### Adding a sport to a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+
+2. Test case: `addsport 1 s/basketball`<br>
+   Expected: First contact has basketball added to its registered sports, unless the sport already exists in their contact. Details of the outcome of the addsport shown in the status message.
+
+3. Test case: `addsport 1 s/chocolate`<br>
+      Expected: No sport is added due to invalid sport. Details of the outcome of the addsport shown in the status message.
+
+4. Test case: `addsport 0 s/basketball`<br>
+   Expected: No sport is added due to invalid index. Details of the outcome of the addsport shown in the status message.
+
+5. Other incorrect addsport commands to try: `addsport`, `addsport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+
+### Deleting a sport from a person
+
+#### Deleting a sport from a person while at least one person is being shown
+
+1. Prerequisites: List all persons using the `list` command or List persons using the 'find' command. At least 1 person in the list.
+
+2. Test case: `deletesport 1 s/basketball`<br>
+   Expected: First contact has basketball deleted from its registered sports, if the sport already exists in their contact. Details of the outcome of the deletesport shown in the status message.
+
+3. Test case: `deletesport 1 s/chocolate`<br>
+   Expected: No sport is deleted due to invalid sport. Details of the outcome of the deletesport shown in the status message.
+
+4. Test case: `deletesport 0 s/basketball`<br>
+   Expected: No sport is added due to invalid index. Details of the outcome of the deletesport shown in the status message.
+
+6. Other incorrect deletesport commands to try: `deletesport`, `deletesport x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Finding persons who play specific sports
+
+#### Displaying a list of person who play specific sports
+
+1. Prerequisites: At least one person must play one of the sports in the list of sports provided.
+
+2. Test case: `findsport s/basketball`<br>
+   Expected: Contacts who have basketball in their registered sports will be shown. Details of the outcome of the findsport shown in the status message.
+
+3. Test case: `findsport s/chocolate`<br>
+   Expected: Error message is shown as sport is not one of the registered sports. Details of the outcome of the findsport shown in the status message.
+
+4. Other incorrect findsport commands to try: `findsport`, `findsport all`, `...`<br>
+   Expected: Similar to previous.
+
+### Finding persons who play a particular sport near a location
+
+#### Displaying a list of person who play specific sports
+
+1. Prerequisites: At least one person must play one of the sports in the list of sports provided. Postal Code must be valid.
+
+2. Test case: `findsport pc/402001 s/basketball`<br>
+   Expected: Contacts who have basketball in their registered sports will be shown by ascending order of distance from the specified location. Details of the outcome of the findsport shown in the status message.
+
+3. Test case: `findsport pc/123456 s/tennis`<br>
+   Expected: Error message is shown as postal code is not valid. Details of the outcome of the findsport shown in the status message.
+
+4. Test case: `findsport pc/402001 s/chocolate`<br>
+   Expected: Error message is shown as sport is not in registered list of sports. Details of the outcome of the findsport shown in the status message.
+
+5. Other incorrect findsport commands to try: `findsport`, `findsport all`, `...`<br>
+   Expected: Similar to previous.
+
+### Adding a game
+
+#### Adds a game to the gamelist
+
+1. Prerequisites: Game must be a registered sport. Date time must follow specified format. Postal Code must be valid.
+
+2. Test case: `addgame g/volleyball  dt/2025-04-04T15:00:00 pc/402001`<br>
+   Expected: Game will be added and the details of the game will be shown in the status message of addgame.
+
+3. Test case: `addgame g/tennis`<br>
+   Expected: Error message is shown as date time and postal code not added. Details of the outcome of the addgame shown in the status message.
+
+4. Other incorrect addgame commands to try: `addgame`, `addgame g/chocolate`, `...` <br>
+   Expected: Similar to previous.
+
+### Deleting a game
+
+#### Deletes a game from gamelist
+
+1. Prerequisites: At least one game must exist.
+
+2. Test case: `deletegame 1`<br>
+   Expected: Game at index 1 will be deleted. Details of the outcome of the deletegame shown in the status message.
+
+3. Test case: `deletegame 0`<br>
+   Expected: Error message is shown as postal index is not valid. Details of the outcome of the deletegame shown in the status message.
+
+4. Other incorrect deletegame commands to try: `deletegame`, `deletegame x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Adding a member to a game
+
+#### Adds a member to a game in the gamelist
+
+1. Prerequisites: At least one game must exist. The member must exist in the person list.
+
+2. Test case: `addmember g/1 n/Alice Pauline`<br>
+   Expected: \"Alice Pauline\" will be added to game at index 1. Details of the outcome of the addmember shown in the status message.
+
+3. Test case: `addmember g/0 n/Alice Pauline`<br>
+   Expected: Error message is shown as index is not valid. Details of the outcome of the addmember shown in the status message.
+
+4. Test case: `addmember g/1 n/Banana Man`<br>
+   Expected: Error message is shown as contact is not in the person list. Details of the outcome of the addmember shown in the status message.
+
+5. Other incorrect addmember commands to try: `addmember g/1`, `addmember all`, `...`<br>
+   Expected: Similar to previous.
+
+### Deleting a member from a game
+
+#### Deletes a member from a game in the gamelist.
+
+1. Prerequisites: At least one game must exist in the gamelist. Member must exist in the person list.
+
+2. Test case: `deletemember g/1 n/Alice Pauline`<br>
+   Expected: \"Alice Pauline\" will be deleted from game at index 1. Details of the outcome of the deletemember shown in the status message.
+
+3. Test case: `deletemember g/0 n/Alice Pauline`<br>
+   Expected: Error message is shown as index is not valid. Details of the outcome of the deletemember shown in the status message.
+
+4. Test case: `deletemember g/1 n/Banana Man`<br>
+   Expected: Error message is shown as contact is not in the person list. Details of the outcome of the deletemember shown in the status message.
+
+5. Other incorrect deletemember commands to try: `deletemember g/1`, `deletemember all`, `...`<br>
+   Expected: Similar to previous.
